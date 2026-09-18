@@ -50,6 +50,18 @@ docker pull ghcr.io/ruoshui6662/m365-copilot2api-docker:latest
 
 账号凭据、Token 缓存、会话等全部写在容器内 `/data`，compose 已映射到宿主机 `./data` 目录，升级镜像不丢失。`data/` 含敏感凭据，已在 `.gitignore` 中排除，请勿提交或外传。
 
+## 公网/局域网部署安全提示
+
+compose 默认将端口绑定到全部网卡（`"4141:4141"`），局域网和公网均可直接访问。暴露到非本机环境时**务必**：
+
+1. 首次登录后立即修改默认密码 `admin123`，或在 compose 中预设强密码：
+   ```yaml
+   environment:
+     M365_ADMIN_PASSWORD: "你的强密码"
+   ```
+2. 公网部署建议在前面加一层反向代理（Nginx / Caddy）做 TLS 和认证，不要把 4141 裸露在公网；
+3. API 调用请在控制台创建 API Key，管理接口仅自己使用。
+
 ## 从源码构建
 
 ```bash
