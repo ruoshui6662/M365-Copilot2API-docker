@@ -6,14 +6,46 @@
 
 ## 快速开始
 
+新建一个空目录，把下面的内容保存为 `docker-compose.yml`：
+
+```yaml
+# 最终用户部署文件：直接拉取 GHCR 公开镜像，无需本地构建。
+# 完整配置说明见 .env.example。
+services:
+  m365-copilot2api:
+    image: ghcr.io/ruoshui6662/m365-copilot2api-docker:latest
+    container_name: m365-copilot2api
+    restart: unless-stopped
+    ports:
+      # 格式："宿主机端口:容器端口"，默认绑定全部网卡，局域网和公网均可访问
+      #   前一个端口 —— 宿主机端口，即客户端访问的端口，可自由改成 8080 等
+      #   后一个端口 —— 容器内部端口，镜像固定监听 4141，不要改
+      # 如只想本机访问，改回 "127.0.0.1:4141:4141"
+      - "4141:4141"
+    volumes:
+      - ./data:/data            # 账号凭据、Token、会话等全部落在这里，升级镜像不丢失
+
+    # 可选：自定义管理员密码（不设则用默认密码 admin123，首次登录强制修改）
+    # environment:
+    #   M365_ADMIN_PASSWORD: "改成你的强密码"
+
+    # 可选：出站代理（访问微软服务不畅时启用）
+    #   M365_OUTBOUND_PROXY: "http://host.docker.internal:7890"
+```
+
+然后一条命令启动：
+
 ```bash
-mkdir m365 && cd m365
-# 下载本仓库的 docker-compose.yml 到当前目录
-curl -O https://raw.githubusercontent.com/ruoshui6662/M365-Copilot2API-docker/main/docker-compose.yml
 docker compose up -d
 ```
 
-浏览器打开 `http://127.0.0.1:4141`，用默认密码 `admin123` 登录并按提示修改，然后在控制台添加你的 Microsoft 账号授权即可调用：
+也可以不保存文件，直接用命令下载本仓库的 compose：
+
+```bash
+curl -O https://raw.githubusercontent.com/ruoshui6662/M365-Copilot2API-docker/main/docker-compose.yml && docker compose up -d
+```
+
+浏览器打开 `http://127.0.0.1:4141`（局域网其他设备用 `http://部署机IP:4141`），用默认密码 `admin123` 登录并按提示修改，然后在控制台添加你的 Microsoft 账号授权即可调用：
 
 ```bash
 curl http://127.0.0.1:4141/v1/chat/completions \
