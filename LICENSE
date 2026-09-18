@@ -1,3 +1,35 @@
+M365-Copilot2API Additional Terms — Non-Commercial API Relay Restriction
+==========================================================================
+
+This program is free software licensed under the GNU Affero General Public
+License v3 (AGPL-3.0) with the following additional terms pursuant to
+Section 7 of the AGPL-3.0.
+
+1. Non-Commercial API Relay Restriction
+   You may NOT operate this software (or any modified version) as a paid
+   or commercial API relay service. "API relay service" means offering
+   access to the functionality of this software to third parties via an
+   API, proxy, or similar interface in exchange for monetary compensation
+   (including subscription fees, per-request charges, or any other form
+   of payment).
+
+2. Permitted Use
+   Personal use, non-commercial use, internal organizational use, and
+   redistribution under AGPL-3.0 are permitted. You may also charge
+   reasonable fees for distribution or support services, provided you do
+   not sell access to the API itself as a commercial service.
+
+3. Commercial Licensing
+   If you wish to use this software in a commercial API relay service,
+   you must obtain a separate commercial license from the copyright
+   holder. Contact the project maintainer for details.
+
+4. These additional terms apply to the Program as a whole and must be
+   preserved in all copies and derivative works, in accordance with
+   Section 7 of AGPL-3.0.
+
+==========================================================================
+
                     GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 
@@ -633,8 +665,8 @@ the "copyright" line and a pointer to where the full notice is found.
     Copyright (C) <year>  <name of author>
 
     This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published
-    by the Free Software Foundation, either version 3 of the License, or
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
     This program is distributed in the hope that it will be useful,

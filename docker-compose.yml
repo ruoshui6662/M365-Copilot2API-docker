@@ -1,0 +1,18 @@
+# 最终用户部署文件：直接拉取 GHCR 公开镜像，无需本地构建。
+# 完整配置说明见 README.md 与 .env.example。
+services:
+  m365-copilot2api:
+    image: ghcr.io/ruoshui6662/m365-copilot2api-docker:latest
+    container_name: m365-copilot2api
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:4141:4141"   # 仅本机访问；如需局域网/公网访问改为 "4141:4141"，并务必修改默认密码
+    volumes:
+      - ./data:/data            # 账号凭据、Token、会话等全部落在这里，升级镜像不丢失
+
+    # 可选：自定义管理员密码（不设则用默认密码 admin123，首次登录强制修改）
+    # environment:
+    #   M365_ADMIN_PASSWORD: "改成你的强密码"
+
+    # 可选：出站代理（访问微软服务不畅时启用）
+    #   M365_OUTBOUND_PROXY: "http://host.docker.internal:7890"
